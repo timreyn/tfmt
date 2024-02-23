@@ -77,8 +77,10 @@ BEGIN
       __tfmt__FMAverage(rawTime)
     WHEN eventId = "333mbf" THEN
       __tfmt__MBF(rawTime)
-    WHEN eventId = "333mbo" THEN
+    WHEN eventId = "333mbo" AND rawTime >= 1000000000 THEN
       __tfmt__MBO(rawTime)
+    WHEN eventId = "333mbo" AND rawTime < 1000000000 THEN
+      __tfmt__MBF(rawTime)
     ELSE
       __tfmt__normalTime(rawTime)
     END;
